@@ -1,0 +1,68 @@
+name: cirrus
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  intl: ^0.20.2
+  http: ^1.4.0
+  geolocator: ^14.0.2
+  loading_indicator: ^3.1.1
+  collection: ^1.19.1
+  flutter_svg: ^2.2.0
+  animated_svg: ^2.1.0
+  url_launcher: ^6.3.2
+  auto_size_text: ^3.0.0
+  flutter_launcher_icons: ^0.14.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/weather.png" 
+
+flutter:
+  assets:
+    - assets/background/
+    - assets/icons/
+    - assets/menu/
+  
+  fonts:
+    - family: Rubik
+      fonts:
+        - asset: fonts/Rubik-VariableFont_wght.ttf
+
+    - family: OpenSans
+      fonts:
+        - asset: fonts/OpenSans-VariableFont_wdth,wght.ttf
+
+    - family: Raleway
+      fonts:
+        - asset: fonts/Raleway-VariableFont_wght.ttf
+    
+    - family: BebasNeue
+      fonts:
+        - asset: fonts/BebasNeue-Regular.ttf
+    
+    - family: Montserrat
+      fonts:
+        - asset: fonts/Montserrat-VariableFont_wght.ttf
+    
+    - family: Orbitron
+      fonts:
+        - asset: fonts/Orbitron-VariableFont_wght.ttf
+
+  uses-material-design: true
+
