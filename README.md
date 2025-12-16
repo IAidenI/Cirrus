@@ -33,10 +33,16 @@ Elle propose une interface **simple, fluide et visuelle**, centrée exclusivemen
 
 ---
 
-## 🚀 Télécharger l’application
+## 🚀 Téléchargement
 
-👉 **APK Android (release)**  
-[Release](https://github.com/IAidenI/Cirrus/releases/download/v1/cirrus.apk)
+### 📦 Dernière version (Android APK)
+
+Vous pouvez télécharger la dernière version stable de l’application directement via la section des **releases GitHub** :
+
+➡️ [Télécharger l’APK – v1.0](https://github.com/IAidenI/Cirrus/releases/download/v1/cirrus.apk)
+
+> ℹ️ Pensez à autoriser l’installation d’applications provenant de sources inconnues sur votre appareil Android.
+
 ---
 
 ## 🛠️ Stack technique
