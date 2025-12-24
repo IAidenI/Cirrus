@@ -119,6 +119,17 @@ class _WeatherState extends State<Weather> {
                                           currentData: _weather.getCodeInsee,
                                           dataList: cityTable,
                                           style: theme.cityStyle(_isLoaded),
+
+                                          initialText: _weather.isPositionGPS
+                                              ? _weather.getCityName
+                                              : null,
+
+                                          onUserTyping: () {
+                                            if (_weather.isPositionGPS) {
+                                              _weather.disableGPS();
+                                            }
+                                          },
+
                                           onSelected: (City selectedCity) {
                                             if (_weather.getCodeInsee !=
                                                 selectedCity.getCodeInsee) {

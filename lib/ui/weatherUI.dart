@@ -492,12 +492,17 @@ class CityAutoComplete<T> extends StatelessWidget {
   final Map<T, String> dataList;
   final TextStyle style;
   final void Function(City)? onSelected;
+  final String? initialText;
+  final VoidCallback? onUserTyping;
+
   const CityAutoComplete({
     super.key,
     required this.currentData,
     required this.dataList,
     required this.style,
     this.onSelected,
+    this.initialText,
+    this.onUserTyping,
   });
 
   static String _displayStringForOption(City option) => option.name;
@@ -507,21 +512,22 @@ class CityAutoComplete<T> extends StatelessWidget {
     final List<City<T>> cities = dataList.entries
         .map((entry) => City<T>(name: entry.value, codeInsee: entry.key))
         .toList();
+
+    final String fallback = dataList.entries
+        .firstWhere(
+          (entry) => entry.key == currentData,
+          orElse: () => MapEntry<T, String>(currentData, "Inconnue"),
+        )
+        .value;
+
     return Autocomplete<City<T>>(
       initialValue: TextEditingValue(
-        text: dataList.entries
-            .firstWhere(
-              (entry) => entry.key == currentData,
-              orElse: () => MapEntry<T, String>(currentData, "Inconnue"),
-            )
-            .value,
+        text: initialText ?? fallback,
       ),
       displayStringForOption: _displayStringForOption,
-
-      // Filtrage dynamique des options selon la saisie utilisateur
       optionsBuilder: (TextEditingValue textEditingValue) {
-        if (textEditingValue.text == '') {
-          return Iterable<City<T>>.empty();
+        if (textEditingValue.text.isEmpty) {
+          return const Iterable.empty();
         }
         return cities.where((City option) {
           return option.getName.toLowerCase().contains(
@@ -529,25 +535,22 @@ class CityAutoComplete<T> extends StatelessWidget {
           );
         });
       },
-
-      // Construction du champ de saisie personnalisé (le style du composent)
       fieldViewBuilder:
           (context, textEditingController, focusNode, onFieldSubmitted) {
             return TextField(
               controller: textEditingController,
               focusNode: focusNode,
               onSubmitted: (value) => onFieldSubmitted(),
+
+              onChanged: (_) => onUserTyping?.call(),
+
               decoration: const InputDecoration.collapsed(hintText: ''),
               style: style,
               textAlign: TextAlign.center,
             );
           },
-
-      // Callback appelé quand une ville est sélectionnée
       onSelected: (City selection) {
-        if (onSelected != null) {
-          onSelected!(selection);
-        }
+        if (onSelected != null) onSelected!(selection);
       },
     );
   }
